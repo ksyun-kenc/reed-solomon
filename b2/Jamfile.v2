@@ -1,0 +1,22 @@
+import os ;
+
+project reed_solomon
+  : requirements
+  <cxxstd>latest
+    <target-os>windows:<define>WIN32_LEAN_AND_MEAN
+    <target-os>windows:<define>_WIN32_WINNT=0x0602
+  <include>../include
+  <threading>multi
+  : default-build release
+  : build-dir ./bin
+  : source-location ../src
+  ;
+
+lib reed_solomon :
+  reed_solomon.cpp
+  ;
+
+exe test_rs :
+  test_rs.cpp
+  .//reed_solomon
+  ;
